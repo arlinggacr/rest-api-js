@@ -1,0 +1,24 @@
+{
+  "name": "rest-api",
+  "version": "1.0.0",
+  "description": "Mencoba membuat REST API dengan beberapa fitur sederhana",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arlinggacr/rest-api-js.git"
+  },
+  "author": "acr",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arlinggacr/rest-api-js/issues"
+  },
+  "homepage": "https://github.com/arlinggacr/rest-api-js#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "pg": "^8.7.3",
+    "nodemon": "^1.18.4"
+  }
+}
