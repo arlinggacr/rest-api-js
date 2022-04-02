@@ -1,2 +1,2 @@
 # rest-api-js
-Mencoba membuat REST API dengan beberapa fitur sederhana
+Making the most simple rest api with js and database also, im using postman
