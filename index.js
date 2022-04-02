@@ -17,7 +17,17 @@ app.get('/todos', async (req, res) => {
     }
 })
 
-//get a todo
+//get a todo by id
+app.get('/todos/:id', async (req, res) => {
+    try {
+        const { id } = req.params
+        const todo = await pool.query('SELECT * FROM todo WHERE todo_id = $1', [id])
+        res.json(todo.rows)
+    } catch (error) {
+        console.error(error.message)
+    }
+})
+
 
 //create a todo
 app.post('/todos/add', async (req, res) => {
@@ -35,11 +45,42 @@ app.post('/todos/add', async (req, res) => {
 })
 
 //update a todo
+app.put('/todos/update/:id', async(req, res) => {
+    try {
+        const { id } = req.params;
+        const { description } = req.body;
+
+        const updateTodo = await pool.query("UPDATE todo SET description = $1 WHERE todo_id = $2 RETURNING *", 
+        [description, id]
+        );
+
+        res.json({
+            message: 'Todo was succesfully updated',
+            data: updateTodo.rows[0]
+        })
+    } catch (error) {
+        console.error(error.message)
+    }
+})
 
 //delete a todo
+app.delete('/todos/delete/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
 
+        const deleteTodo = await pool.query("DELETE FROM todo WHERE todo_id = $1", [id]);
+
+        res.json({
+            message: 'Todo was succesfully deleted',
+            data: deleteTodo.rows[0]
+        })
+    } catch (error) {
+        console.error(error.message)
+    }
+})
 
 
 app.listen(5000, () => {
     console.log("Server is running on port 5000")
 })
+
